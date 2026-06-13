@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koppula Sujitha Reddy | Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #e6e6e6;
+            --text-dark: #111111;
+            --text-muted: #555555;
+            --card-bg: #f5f5f5;
+            --accent-line: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 40px 80px;
+        }
+
+        /* Hero Section mimicking the Canva screenshot */
+        .hero-container {
+            display: flex;
+            align-items: center;
+            min-height: 70vh;
+            position: relative;
+            margin-bottom: 80px;
+        }
+
+        .left-visual {
+            flex: 1;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Large circular frame for the profile image */
+        .profile-circle {
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            background-color: #cccccc;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #b5b5b5;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .profile-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%); /* Optional: To match the artistic black & white photo vibe */
+            transition: filter 0.3s ease;
+        }
+
+        .profile-circle img:hover {
+            filter: grayscale(0%);
+        }
+
+        .right-text {
+            flex: 1.2;
+            padding-left: 40px;
+            z-index: 2;
+        }
+
+        /* Massive overlapping typography structure */
+        .main-title {
+            font-size: 5.5rem;
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .main-title .white-text {
+            color: #ffffff;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Crisp outline effect */
+        }
+
+        /* Text area connecting layout elements underneath the main title */
+        .bottom-decor {
+            display: flex;
+            align-items: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .connect-text {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .footer-url {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+
+        .footer-url a {
+            color: var(--text-dark);
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: 500;
+        }
+
+        /* Resume Content Section grid alignment */
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto 100px auto;
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: 1fr 2.5fr;
+            gap: 40px;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid #d0d0d0;
+        }
+
+        .section-label {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 700;
+            color: var(--text-dark);
+            position: sticky;
+            top: 40px;
+            height: fit-content;
+        }
+
+        .section-body {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+
+        .bio-text {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: #222222;
+            margin-bottom: 20px;
+        }
+
+        /* Sub-grids for structural data */
+        .education-block {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .gpa-tag {
+            background-color: var(--text-dark);
+            color: #ffffff;
+            padding: 4px 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 2px;
+            letter-spacing: 1px;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .skill-tag {
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            padding: 8px 16px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-radius: 4px;
+        }
+
+        /* Clean modern project cards packaging */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid #dbdbdb;
+            padding: 30px;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 15px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .project-date {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .project-bullets {
+            list-style-type: none;
+            margin-bottom: 20px;
+        }
+
+        .project-bullets li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            color: #333333;
+        }
+
+        .project-bullets li::before {
+            content: "▪";
+            position: absolute;
+            left: 0;
+            color: var(--text-dark);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--text-dark);
+            padding-bottom: 2px;
+            transition: color 0.2s;
+        }
+
+        .project-link:hover {
+            color: var(--text-muted);
+            border-color: var(--text-muted);
+        }
+
+        /* Achievements & Certifications layout */
+        .list-item {
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .list-subtext {
+            font-weight: 400;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Award Box Styling matching layout cards with 100% width extent */
+        .award-box {
+            display: flex;
+            align-items: center;
+            background-color: #ffffff;
+            border: 1px solid #dbdbdb;
+            padding: 25px;
+            border-radius: 6px;
+            margin-top: 25px;
+            margin-bottom: 35px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            width: 100%;
+        }
+
+        .award-icon-container {
+            margin-right: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .award-icon {
+            width: 50px;
+            height: 50px;
+            fill: var(--text-dark);
+        }
+
+        .award-content {
+            flex: 1;
+        }
+
+        /* Responsive scaling */
+        @media (max-width: 1024px) {
+            body { padding: 30px; }
+            .hero-container { flex-direction: column; text-align: center; justify-content: center; min-height: auto; margin-top: 60px;}
+            .left-visual { justify-content: center; margin-bottom: 40px; }
+            .profile-circle { width: 300px; height: 300px; }
+            .right-text { padding-left: 0; }
+            .main-title { font-size: 3.5rem; }
+            .bottom-decor { justify-content: center; }
+            .section-grid { grid-template-columns: 1fr; gap: 15px; }
+            .section-label { position: relative; top: 0; border-bottom: 2px solid var(--text-dark); padding-bottom: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero-container">
+        <div class="left-visual">
+            <div class="profile-circle">
+                <!-- Updated dynamically with your uploaded file -->
+                <img src="1000096441.png" alt="Koppula Sujitha Reddy Profile Picture">
+            </div>
+        </div>
+
+        <div class="right-text">
+            <h1 class="main-title">
+                Koppula<br>
+                <span class="white-text">Sujitha</span><br>
+                Reddy
+            </h1>
+            
+            <div class="bottom-decor">
+                <div class="connect-text">Connect With Me</div>
+            </div>
+
+            <div class="footer-url">
+                <a href="mailto:koppulasujithareddy19@gmail.com">koppulasujithareddy19@gmail.com</a>
+                <a href="https://www.linkedin.com/in/koppula-sujitha-reddy-4b375a395" target="_blank">LinkedIn</a>
+                <a href="https://github.com/koppulasujithareddy" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="content-section">
+
+        <section class="section-grid">
+            <div class="section-label">About Me</div>
+            <div class="section-body">
+                <p class="bio-text">
+                    As an enthusiastic Computer Science Engineering student specializing in Artificial Intelligence and Machine Learning, I am passionate about AI technologies, software development, and innovative problem-solving. 
+                </p>
+                <p class="bio-text" style="font-size: 1.1rem; color: var(--text-muted);">
+                    I have a strong interest in machine learning, intelligent systems, and real-world AI applications. I seek a challenging role to apply my skills, gain hands-on experience, and contribute to innovative technology solutions.
+                </p>
+            </div>
+        </section>
+
+        <section class="section-grid">
+            <div class="section-label">Technical Matrix</div>
+            <div class="section-body">
+                <h3 style="margin-bottom: 10px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;">Core Focus</h3>
+                <div class="skills-container">
+                    <div class="skill-tag">Artificial Intelligence</div>
+                    <div class="skill-tag">Machine Learning</div>
+                    <div class="skill-tag">Deep Learning Concepts</div>
+                    <div class="skill-tag">Intelligent Systems</div>
+                    <div class="skill-tag">AI Development</div>
+                </div>
+
+                <h3 style="margin-bottom: 10px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;">Programming, Frameworks & Tools</h3>
+                <div class="skills-container">
+                    <div class="skill-tag">Python</div>
+                    <div class="skill-tag">TensorFlow</div>
+                    <div class="skill-tag">NumPy</div>
+                    <div class="skill-tag">Pandas</div>
+                    <div class="skill-tag">Git</div>
+                    <div class="skill-tag">GitHub</div>
+                    <div class="skill-tag">HTML</div>
+                    <div class="skill-tag">CSS</div>
+                    <div class="skill-tag">VS Code</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-grid">
+            <div class="section-label">Education</div>
+            <div class="section-body">
+                <div class="education-block">
+                    <div>
+                        <h3 style="font-size: 1.3rem; font-weight: 700;">Anurag Engineering College</h3>
+                        <p style="color: var(--text-muted); font-weight: 500; margin-top: 2px;">B.Tech in Computer Science Engineering (AI & ML)</p>
+                        <p style="font-size: 0.95rem; color: #666666; margin-top: 4px;">Timeline: 2024 — 2028</p>
+                    </div>
+                    <div>
+                        <span class="gpa-tag">CGPA 8.45</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-grid">
+            <div class="section-label">Projects</div>
+            <div class="section-body">
+                <div class="projects-grid">
+                    
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Lung Cancer Prediction System</h3>
+                            <span class="project-date">Nov 2025 — Jan 2026</span>
+                        </div>
+                        <ul class="project-bullets">
+                            <li>Developed an AI-based lung cancer prediction model using medical image datasets sourced from Kaggle.</li>
+                            <li>Engineered and applied custom image classification architectures and deep learning concepts utilizing Python frameworks for precision disease tracking.</li>
+                        </ul>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Dristi Project</h3>
+                            <span class="project-date">March 2026</span>
+                        </div>
+                        <ul class="project-bullets">
+                            <li>Developed a specialized AI-driven assistive system engineered for visually impaired individuals to smoothly identify Indian currency denominations.</li>
+                            <li>Implemented an automated real-time voice output module configured to announce values explicitly in both English and Telugu.</li>
+                        </ul>
+                        <a href="https://github.com/koppulasujithareddy/Dristi-project.git" class="project-link" target="_blank">View Code Repository &rarr;</a>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">News Digest AI</h3>
+                            <span class="project-date">March 2026</span>
+                        </div>
+                        <ul class="project-bullets">
+                            <li>Architected an AI-powered news aggregation and summarization engine built to deliver context-heavy insights concisely.</li>
+                            <li>Significantly elevated global document readability while automating system text transformations using advanced core AI models.</li>
+                        </ul>
+                        <a href="https://github.com/koppulasujithareddy/24C11A66A8_newsdigest-agent.git" class="project-link" target="_blank">View Code Repository &rarr;</a>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Drive Sense AI</h3>
+                            <span class="project-date">March 2026</span>
+                        </div>
+                        <ul class="project-bullets">
+                            <li>Engineered an intelligent smart mobile application module providing dynamic real-time driver assistance mechanics.</li>
+                            <li>Optimized responsive user interface states backed by machine learning monitoring pipelines to augment spatial safe awareness.</li>
+                        </ul>
+                        <a href="https://github.com/koppulasujithareddy/DriveSenseai.git" class="project-link" target="_blank">View Code Repository &rarr;</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="section-grid">
+            <div class="section-label">Credentials & Honors</div>
+            <div class="section-body">
+                
+                <!-- Certifications placed cleanly at the top of this segment -->
+                <div>
+                    <h3 style="font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; border-bottom: 1px dashed var(--accent-line); padding-bottom: 5px;">Certifications</h3>
+                    <div class="list-item">AI / ML / Python Certification <span class="list-subtext">— Brainic Academy</span></div>
+                    <div class="list-item">AgentathonX Workshop on Agentic AI <span class="list-subtext">— Practical Intensive Engineering</span></div>
+                    <div class="list-item">Strategic Engineering Hack Sprints <span class="list-subtext">— AI Sprint Participant</span></div>
+                </div>
+
+                <!-- Expanded Award box styled structure following your specifications underneath -->
+                <div class="award-box">
+                    <div class="award-icon-container">
+                        <!-- SVG Trophy Icon styled with your design parameters -->
+                        <svg class="award-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M18 2H6v2H2v3c0 3.24 2.41 5.92 5.5 6.42A5.986 5.986 0 0 0 11 17.93V20H7v2h10v-2h-4v-2.07c2.25-.26 4.19-1.63 4.97-3.51A6.417 6.417 0 0 0 22 7V4h-4V2zM4 6h2v4.07C4.44 9.61 3.42 8.1 4 6zm14 4.07V6h2c.58 2.1-.44 3.61-2 4.07z"/>
+                        </svg>
+                    </div>
+                    <div class="award-content">
+                        <div style="color: #000000; font-weight: 700; font-size: 1.2rem;">
+                            Runner-Up Position — Today Innovation Hackathon
+                        </div>
+                        <p style="font-weight: 400; font-size: 0.95rem; color: var(--text-muted); margin-top: 4px;">
+                            Secured podium finish out of 40+ competing engineering teams.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer style="text-align: center; padding: 40px 0; font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid #d0d0d0; max-width: 1200px; margin: 0 auto;">
+        &copy; 2026 Koppula Sujitha Reddy. Built to spec from Minimalist Canvas Framework.
+    </footer>
+
+</body>
+</html>
