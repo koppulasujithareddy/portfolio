@@ -1,4 +1,4 @@
-# Koppula Sujitha Reddy - Portfolio
+## Koppula Sujitha Reddy - Portfolio
 
 Welcome to my personal portfolio website! This portfolio showcases my academic background, technical skills, projects, certifications, and achievements as a Computer Science Engineering student specializing in Artificial Intelligence and Machine Learning.
 
